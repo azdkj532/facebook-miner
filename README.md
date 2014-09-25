@@ -9,3 +9,5 @@ https://developers.facebook.com/docs/graph-api
 
 Here to get the access token:<br>
 https://developers.facebook.com/tools/explorer/
+
+inspired by Viktor Lin( https://github.com/Zekt )
