@@ -15,7 +15,7 @@ def recursive( source, syntax ):
         yield from recursive( source, next_page[32:] )
 
 record = open( "record.txt", "w")
-for article in recursive( fb, "170451929692360/feed?fields=id,message" ):
+for article in recursive( fb, "314357341996385/feed?fields=id,message" ):
     record.write( str(article) )
     record.write("\n")
 record.close()
