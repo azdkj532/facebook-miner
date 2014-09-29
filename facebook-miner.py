@@ -15,7 +15,7 @@ def recursive( source, syntax ):
             raise StopIteration
 
 record = open( "record.txt", "w")
-for article in recursive( fb, APISyntax ):
+for article in get_articles( fb, APISyntax ):
     record.write( str(article) )
     record.write("\n")
 record.close()
