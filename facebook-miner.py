@@ -4,15 +4,15 @@ APISyntax    = input( "Please input your APISyntax:\n")
 fb = facebook.GraphAPI( access_token )
 
 def recursive( source, syntax ):
-    articles = source.get_object( syntax )
-    for article in articles['data']:
-        yield article
-    try:
-        next_page = articles['paging']['next']
-    except KeyError:
-        raise StopIteration
-    else:
-        yield from recursive( source, next_page[32:] )
+    url = syntax
+    while True:
+        articles = source.get_object( url )
+        for article in articles['data']:
+            yield article
+        try:
+            url = articles['paging']['next'][32:]
+        except KeyError:
+            raise StopIteration
 
 record = open( "record.txt", "w")
 for article in recursive( fb, APISyntax ):
