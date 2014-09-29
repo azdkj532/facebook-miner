@@ -3,7 +3,7 @@ access_token = input( "Please input an usable token:\n")
 APISyntax    = input( "Please input your APISyntax:\n")
 fb = facebook.GraphAPI( access_token )
 
-def recursive( source, syntax ):
+def get_articles( source, syntax ):
     url = syntax
     while True:
         articles = source.get_object( url )
