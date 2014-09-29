@@ -3,7 +3,7 @@ access_token = input( "Please input an usable token:\n")
 APISyntax    = input( "Please input your APISyntax:\n")
 fb = facebook.GraphAPI( access_token )
 
-def recursive( source, syntax ):
+def get_articles( source, syntax ):
     articles = source.get_object( syntax )
     for article in articles['data']:
         yield article
@@ -12,10 +12,11 @@ def recursive( source, syntax ):
     except KeyError:
         raise StopIteration
     else:
-        yield from recursive( source, next_page[32:] )
+        yield from get_articles( source, next_page[32:] )
+
 
 record = open( "record.txt", "w")
-for article in recursive( fb, APISyntax ):
+for article in get_articles( fb, APISyntax ):
     record.write( str(article) )
     record.write("\n")
 record.close()
