@@ -1,4 +1,5 @@
 import facebook
+
 access_token = input( "Please input an usable token:\n")
 APISyntax    = input( "Please input your APISyntax:\n")
 fb = facebook.GraphAPI( access_token )
