@@ -4,8 +4,8 @@ access_token = input( "Please input an usable token:\n")
 APISyntax    = input( "Please input your APISyntax:\n")
 fb = facebook.GraphAPI( access_token )
 
-def get_articles( source, syntax ):
-    articles = source.get_object( syntax )
+def get_articles( token, syntax ):
+    articles = token.get_object( syntax )
     for article in articles['data']:
         yield article
     try:
@@ -13,7 +13,7 @@ def get_articles( source, syntax ):
     except KeyError:
         raise StopIteration
     else:
-        yield from get_articles( source, next_page[32:] )
+        yield from get_articles( token, next_page[32:] )
 
 
 record = open( "record.txt", "w")
