@@ -3,10 +3,10 @@ access_token = input( "Please input an usable token:\n")
 APISyntax    = input( "Please input your APISyntax:\n")
 fb = facebook.GraphAPI( access_token )
 
-def get_articles( source, syntax ):
+def get_articles( token, syntax ):
     url = syntax
     while True:
-        articles = source.get_object( url )
+        articles = token.get_object( url )
         for article in articles['data']:
             yield article
         try:
